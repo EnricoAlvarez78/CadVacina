@@ -1,0 +1,22 @@
+<app-titulo-agendamento></app-titulo-agendamento>
+<div>
+  <form [formGroup]="registerForm" (ngSubmit)="salvarPosto()">
+    <fieldset class="border p-2">
+      <legend class="w-auto">Posto de Vacinação</legend>
+
+      <div class="form-group row mt-2">
+        <div class="col-sm-5">
+          <select class="form-control" id="sltPosto" formControlName="posto" [(ngModel)]="posto"
+            [ngClass]="{ 'is-invalid': submitted && f.posto.errors }">
+            <option *ngFor="let po of postos" [value]="po.id">{{po.nome}}, {{po.rua}}, {{po.bairro}}</option>
+          </select>
+          <div *ngIf="submitted && f.posto.errors" class="invalid-feedback">
+            <div *ngIf="f.posto.errors">Posto da Vacinação é obrigatório</div>
+          </div>
+        </div>
+      </div>
+
+    </fieldset>
+    <app-botoes-agendamento></app-botoes-agendamento>
+</form>
+</div>

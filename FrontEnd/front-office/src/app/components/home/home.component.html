@@ -1,0 +1,14 @@
+<div class="row d-flex justify-content-center pt-5 m-5 ">
+  <h1>Agendamento Para Vacinação Contra Covid 19</h1>
+</div>
+<div class="row d-flex justify-content-center pt-5">
+  <button class="btn btn-sm btn-outline-primary" *ngIf="btnAgendaVisible" (click)="agendar()">Agendar</button>
+  <div *ngIf="!btnAgendaVisible">
+    <span class="text-danger">Não há postos disponivies atualmente.</span>
+    <br />
+    <span class="text-danger">Aguarde uma nova liberação de postos.</span>
+</div>
+</div>
+<div class="row d-flex justify-content-center pt-3">
+  <button class="btn btn-sm btn-outline-primary" (click)="consultar()">Consultar</button>
+</div>

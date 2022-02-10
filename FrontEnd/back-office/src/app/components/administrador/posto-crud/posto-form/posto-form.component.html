@@ -1,0 +1,75 @@
+<fieldset>
+  <legend>{{titulo}}</legend>
+
+  <form [formGroup]="registerForm" (ngSubmit)="salvar()" class="mt-3 mb-3" >
+
+    <div class="form-group row mt-2">
+      <label for="txtNome" class="col-sm-1 col-form-label">Nome</label>
+      <div class="col-sm-11">
+        <input type="text" class="form-control" id="txtNome" formControlName="nome" placeholder="Digite o nome do posto" title="Digite o nome do posto"
+        [(ngModel)]="posto.nome"
+        [ngClass]="{ 'is-invalid': submitted && f.nome.errors }" >
+        <div *ngIf="submitted && f.nome.errors" class="invalid-feedback">
+          <div *ngIf="f.nome.errors.required">Nome é obrigatório</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group row mt-2">
+      <label for="txtRua" class="col-sm-1 col-form-label">Rua</label>
+      <div class="col-sm-11">
+        <input type="text" class="form-control" id="txtRua" formControlName="rua" placeholder="Digite a rua do posto" title="Digite a rua do posto"
+        [(ngModel)]="posto.rua"
+        [ngClass]="{ 'is-invalid': submitted && f.rua.errors }" >
+        <div *ngIf="submitted && f.rua.errors" class="invalid-feedback">
+          <div *ngIf="f.rua.errors.required">Rua é obrigatório</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group row mt-2">
+      <label for="txtNumero" class="col-sm-1 col-form-label">Numero</label>
+      <div class="col-sm-2">
+        <input type="text" class="form-control" id="txtNumero" formControlName="numero" placeholder="Digite o numero do posto" title="Digite o numero do posto"
+        [(ngModel)]="posto.numero">
+      </div>
+
+      <label for="txtBairro" class="col-sm-1 col-form-label">Bairro</label>
+      <div class="col-sm-8">
+        <input type="text" class="form-control" id="txtBairro" formControlName="bairro" placeholder="Digite o bairro do posto" title="Digite o bairro do posto"
+        [(ngModel)]="posto.bairro"
+        [ngClass]="{ 'is-invalid': submitted && f.bairro.errors }" >
+        <div *ngIf="submitted && f.bairro.errors" class="invalid-feedback">
+          <div *ngIf="f.bairro.errors.required">Bairro é obrigatório</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group row mt-2">
+      <label for="txtCep" class="col-sm-1 col-form-label">Cep</label>
+      <div class="col-sm-3">
+        <input type="text" class="form-control" id="txtCep" formControlName="cep" placeholder="Digite o cep do posto" title="Digite o cep do posto" [mask]="getCepMask()"
+        [(ngModel)]="posto.cep"
+        [ngClass]="{ 'is-invalid': submitted && f.cep.errors }" >
+        <div *ngIf="submitted && f.cep.errors" class="invalid-feedback">
+          <div *ngIf="f.cep.errors.required">Cep é obrigatório</div>
+        </div>
+      </div>
+
+      <label for="txtCidade" class="col-sm-1 col-form-label">Cidade</label>
+      <div class="col-sm-7">
+        <input type="text" class="form-control" id="txtCidade" formControlName="cidade" placeholder="Digite o cidade do posto" title="Digite o cidade do posto"
+        [(ngModel)]="posto.cidade"
+        [ngClass]="{ 'is-invalid': submitted && f.cidade.errors }" >
+        <div *ngIf="submitted && f.cidade.errors" class="invalid-feedback">
+          <div *ngIf="f.cidade.errors.required">Cidade é obrigatório</div>
+        </div>
+      </div>
+    </div>
+
+  </form>
+
+  <button class="btn btn-sm btn-outline-secondary" (click)="retornaGrid()">Retornar</button>&nbsp;
+  <button class="btn btn-sm btn-outline-primary" (click)="salvar()">Salvar</button>
+
+</fieldset>

@@ -1,0 +1,61 @@
+<fieldset>
+  <legend>{{titulo}}</legend>
+
+  <form [formGroup]="registerForm" (ngSubmit)="salvar()" class="mt-3 mb-3" >
+    <div class="form-group row mt-2">
+      <label for="txtNome" class="col-sm-2 col-form-label">Nome</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="txtNome" formControlName="nome" placeholder="Digite o nome do usuário"
+        [(ngModel)]="usuario.nome"
+        [ngClass]="{ 'is-invalid': submitted && f.nome.errors }" >
+        <div *ngIf="submitted && f.nome.errors" class="invalid-feedback">
+          <div *ngIf="f.nome.errors.required">Nome é obrigatório</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group row mt-2">
+      <label for="txtEmail" class="col-sm-2 col-form-label">E-mail</label>
+      <div class="col-sm-10">
+        <input type="email" class="form-control" id="txtEmail" formControlName="email" placeholder="Digite o e-mail do usuário"
+        [(ngModel)]="usuario.email"
+        [ngClass]="{ 'is-invalid': submitted && f.email.errors }"  >
+        <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+          <div *ngIf="f.email.errors.required">E-mail é obrigatório</div>
+          <div *ngIf="f.email.errors.email">O e-mail deve ser um endereço de e-mail válido</div>
+      </div>
+      </div>
+    </div>
+
+    <div class="form-group row mt-2">
+      <label for="sltPerfil" class="col-sm-2 col-form-label">Perfil</label>
+      <div class="col-sm-10">
+        <select class="form-control" id="sltPerfil" formControlName="perfil"
+          [(ngModel)]="usuario.idPerfil"
+          [ngClass]="{ 'is-invalid': submitted && f.perfil.errors }">
+          <option *ngFor="let perfil of perfis" [value]="perfil.id" [attr.selected]="perfil.selecionado ? true : null" >{{perfil.nome}}</option>
+        </select>
+        <div *ngIf="submitted && f.perfil.errors" class="invalid-feedback">
+            <div *ngIf="f.perfil.errors">Perfil é obrigatório</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group row mt-2" *ngIf="usuario.idPerfil != 1">
+      <label for="sltPosto" class="col-sm-2 col-form-label">Posto</label>
+      <div class="col-sm-10">
+        <select class="form-control" id="sltPosto" formControlName="posto"
+          [(ngModel)]="usuario.idPosto"
+          [ngClass]="{ 'is-invalid': submitted && f.posto.errors }">
+          <option *ngFor="let posto of postos" [value]="posto.id" [attr.selected]="posto.selecionado ? true : null" >{{posto.nome}}</option>
+        </select>
+        <div *ngIf="submitted && f.posto.errors" class="invalid-feedback">
+            <div *ngIf="f.posto.errors">Posto é obrigatório</div>
+        </div>
+      </div>
+    </div>
+  </form>
+
+  <button class="btn btn-sm btn-outline-secondary" (click)="retornaGrid()">Retornar</button>&nbsp;
+  <button class="btn btn-sm btn-outline-primary" (click)="salvar()">Salvar</button>
+</fieldset>

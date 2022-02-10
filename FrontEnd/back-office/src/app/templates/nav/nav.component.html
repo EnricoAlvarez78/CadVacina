@@ -1,0 +1,33 @@
+<nav class="navbar navbar-expand-sm bg-light">
+  <div class="container">
+    <a routerLink="home" routerLinkActive="active" class="navbar-brand">Início</a>
+    <div>
+      <ul class="navbar-nav">
+        <li class="nav-item" routerLinkActive="active" *ngIf="currentSession?.idPerfil === 1">
+          <a routerLink="usuarios" class="nav-link">Usuários</a>
+        </li>
+        <li class="nav-item" routerLinkActive="active" *ngIf="currentSession?.idPerfil === 1">
+          <a routerLink="postos" class="nav-link">Postos</a>
+        </li>
+        <li class="nav-item" routerLinkActive="active" *ngIf="currentSession?.idPerfil === 1">
+          <a routerLink="grupos" class="nav-link">Grupos</a>
+        </li>
+        <li class="nav-item" routerLinkActive="active" *ngIf="currentSession?.idPerfil === 2">
+          <a routerLink="lotes" class="nav-link">Lotes</a>
+        </li>
+        <li class="nav-item" routerLinkActive="active" *ngIf="currentSession?.idPerfil === 2">
+          <a routerLink="agendas" class="nav-link">Agendas</a>
+        </li>
+        <li class="nav-item" routerLinkActive="active" *ngIf="currentSession?.idPerfil === 3">
+          <a routerLink="consulta" class="nav-link">Consultar Agendamento</a>
+        </li>
+        <li class="nav-item" routerLinkActive="active">
+          <a routerLink="changepassword" class="nav-link">Alterar Senha</a>
+        </li>
+        <li class="nav-item" routerLinkActive="active">
+          <a routerLink="/" class="nav-link" (click)="logout()">Sair</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

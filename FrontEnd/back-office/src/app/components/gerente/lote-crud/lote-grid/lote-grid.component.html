@@ -1,0 +1,27 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Nº do lote</th>
+      <th scope="col">Data</th>
+      <th scope="col">Fabricante</th>
+      <th scope="col">Qtd de doses</th>
+      <th scope="col">Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let lote of lotes | paginate: { itemsPerPage: 10, currentPage: p }">
+      <td class="col-md-2">{{lote.numero}}</td>
+      <td class="col-md-2">{{lote.dataRecebimento | date:'dd/MM/yyyy' }}</td>
+      <td class="col-md-2">{{lote.fabricante}}</td>
+      <td class="col-md-2">{{lote.quantidadeDoses}}</td>
+      <td class="col-md-2">
+        <div class="btn-group">
+          <button class="btn btn-sm btn-outline-primary" (click)="navegarParaFrom(lote.id)">Editar</button>
+          <button class="btn btn-sm btn-outline-danger" (click)="mostraConfirm(lote.id, lote.numero)">Excluir</button>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<pagination-controls class="text-center" (pageChange)="p = $event" previousLabel="Anterior" nextLabel="Próximo"></pagination-controls>

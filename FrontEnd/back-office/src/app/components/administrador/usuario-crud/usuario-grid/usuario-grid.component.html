@@ -1,0 +1,23 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Nome</th>
+      <th scope="col">Perfil</th>
+      <th scope="col">Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let usuario of usuarios| paginate: { itemsPerPage: 10, currentPage: p }">
+      <td class="col-md-5">{{usuario.nome}}</td>
+      <td class="col-md-5">{{usuario.nomePerfil}}</td>
+      <td class="col-md-2">
+        <div class="btn-group">
+          <button class="btn btn-sm btn-outline-primary" (click)="navegarParaUsuarioFrom(usuario.id)">Editar</button>
+          <button class="btn btn-sm btn-outline-danger" (click)="mostraConfirm(usuario.id, usuario.nome)">Excluir</button>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<pagination-controls class="text-center" (pageChange)="p = $event" previousLabel="Anterior" nextLabel="Próximo"></pagination-controls>

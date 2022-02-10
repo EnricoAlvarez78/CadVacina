@@ -1,0 +1,20 @@
+<app-titulo-agendamento></app-titulo-agendamento>
+<div>
+  <form [formGroup]="registerForm" (ngSubmit)="salvarGrupo()">
+    <fieldset class="border p-2">
+      <legend class="w-auto">Grupo de Prioridade</legend>
+      <div class="form-group row mt-2">
+        <div class="col-sm-5">
+          <select class="form-control" id="sltGrupo" formControlName="grupo" [(ngModel)]="grupo"
+            [ngClass]="{ 'is-invalid': submitted && f.grupo.errors }">
+            <option *ngFor="let gp of grupos" [value]="gp.id">{{gp.nome}}-{{gp.idadeMinima}} anos</option>
+          </select>
+          <div *ngIf="submitted && f.grupo.errors" class="invalid-feedback">
+            <div *ngIf="f.grupo.errors">Grupo de prioridade é obrigatório</div>
+          </div>
+        </div>
+      </div>
+    </fieldset>
+    <app-botoes-agendamento></app-botoes-agendamento>
+</form>
+</div>

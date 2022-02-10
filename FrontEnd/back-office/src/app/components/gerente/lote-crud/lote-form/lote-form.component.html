@@ -1,0 +1,69 @@
+<fieldset>
+  <legend>{{titulo}}</legend>
+
+  <form [formGroup]="registerForm" (ngSubmit)="salvar()" class="mt-3 mb-3">
+
+    <div class="form-group row mt-2">
+      <label for="txtFabricante" class="col-sm-2 col-form-label">Fabricante</label>
+      <div class="col-sm-10">
+        <input type="text" id="txtFabricante" formControlName="fabricante" class="form-control" title="Digite o Fabricante" maxlength="100"
+          [(ngModel)]="lote.fabricante"
+          [ngClass]="{ 'is-invalid': submitted && f.fabricante.errors }" />
+        <div *ngIf="submitted && f.fabricante.errors" class="invalid-feedback">
+          <div *ngIf="f.fabricante.errors.required">Fabricante é obrigatório</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group row mt-2">
+      <label for="txtNumlote" class="col-sm-2 col-form-label">Nº do lote</label>
+      <div class="col-sm-2">
+        <input type="text" id="txtNumlote" formControlName="numero" class="form-control" title="Digite a número do lote" maxlength="20"
+          [(ngModel)]="lote.numero"
+          [ngClass]="{ 'is-invalid': submitted && f.numero.errors }" />
+        <div *ngIf="submitted && f.numero.errors" class="invalid-feedback">
+          <div *ngIf="f.numero.errors.required">Número do lote é obrigatório</div>
+        </div>
+      </div>
+
+      <label for="txtData" class="col-sm-2 col-form-label">Data de Recebimento</label>
+      <div class="col-sm-2">
+        <input type="date" formControlName="dataRecebimento" class="form-control" title="Digite a data da agenda"
+          [(ngModel)]="lote.dataRecebimento"
+          [ngClass]="{ 'is-invalid': submitted && f.dataRecebimento.errors }" />
+        <div *ngIf="submitted && f.dataRecebimento.errors" class="invalid-feedback">
+          <div *ngIf="f.dataRecebimento.errors.required">Data de Recebimento é obrigatório</div>
+          <div *ngIf="f.dataRecebimento.errors.pattern">A data deve ser uma data válida no formato DD-MM-AAAA</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group row mt-2">
+      <label for="txtQtddoses" class="col-sm-2 col-form-label">Qtd de doses</label>
+      <div class="col-sm-2">
+        <input type="number" id="txtQtddoses" formControlName="quantidadeDoses" class="form-control" title="Digite a qtd de doses" [mask]="getMaskNumber()"
+          [(ngModel)]="lote.quantidadeDoses"
+          [ngClass]="{ 'is-invalid': submitted && f.quantidadeDoses.errors }" />
+        <div *ngIf="submitted && f.quantidadeDoses.errors" class="invalid-feedback">
+          <div *ngIf="f.quantidadeDoses.errors.required">Qtd de doses é obrigatório</div>
+          <div *ngIf="f.quantidadeDoses.errors">Qtd de doses deve ser maior que 0(zero)</div>
+        </div>
+      </div>
+
+      <label for="txtDiasSegundaDose" class="col-sm-2 col-form-label">Dias para segunda dose</label>
+      <div class="col-sm-2">
+        <input type="number" id="txtDiasSegundaDose" formControlName="diasSegundaDose" class="form-control" title="Digite Dias para segunda dose" [mask]="getMaskNumber()"
+          [(ngModel)]="lote.diasSegundaDose"
+          [ngClass]="{ 'is-invalid': submitted && f.diasSegundaDose.errors }" />
+        <div *ngIf="submitted && f.diasSegundaDose.errors" class="invalid-feedback">
+          <div *ngIf="f.diasSegundaDose.errors.required">Qtd de doses é obrigatório</div>
+          <div *ngIf="f.quantidadeDoses.errors">Qtd de doses deve ser maior que 0(zero)</div>
+        </div>
+      </div>
+    </div>
+  </form>
+
+  <button class="btn btn-sm btn-outline-secondary" (click)="retornaGrid()">Retornar</button>&nbsp;
+  <button class="btn btn-sm btn-outline-primary" (click)="salvar()">Salvar</button>
+
+</fieldset>

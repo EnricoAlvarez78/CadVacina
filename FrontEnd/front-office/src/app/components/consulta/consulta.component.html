@@ -1,0 +1,20 @@
+<div class="row d-flex justify-content-center pt-5 m-5 ">
+  <div class="col-sm-8">
+    <h1>Consulta de Agendamento</h1>
+  </div>
+</div>
+<form [formGroup]="registerForm" (ngSubmit)="consultar()">
+  <div class="row d-flex justify-content-center">
+    <div class="col-sm-4">
+      <input type="text" class="form-control" id="txtCpf" formControlName="cpf" placeholder="Digite seu cpf"
+        title="Digite seu cpf" [mask]="getCpfMask()" [(ngModel)]="cpf"
+        [ngClass]="{ 'is-invalid': submitted && f.cpf.errors }">
+      <div *ngIf="submitted && f.cpf.errors" class="invalid-feedback">
+        <div *ngIf="f.cpf.errors.required">Cpf é obrigatório</div>
+      </div>
+    </div>
+  </div>
+  <div class="row d-flex justify-content-center pt-3">
+    <button class="btn btn-sm btn-outline-primary">Consultar</button>
+  </div>
+</form>

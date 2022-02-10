@@ -1,0 +1,122 @@
+<form [formGroup]="registerForm" (ngSubmit)="salvar()" class="mt-3 mb-3">
+  <fieldset>
+    <legend class="w-auto">Dados Pessoais</legend>
+    <div class="form-group row">
+      <label for="txtNome" class="col-sm-1 col-form-label">Nome</label>
+      <div class="col-sm-11">
+        <input type="text" class="form-control" id="txtNome" formControlName="nome" placeholder="Digite seu nome"
+          title="Digite seu nome" [(ngModel)]="agendamento.dadosPessoais!.nome"
+          [ngClass]="{ 'is-invalid': submitted && f.nome.errors }">
+        <div *ngIf="submitted && f.nome.errors" class="invalid-feedback">
+          <div *ngIf="f.nome.errors.required">Nome é obrigatório</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label for="txtCpf" class="col-sm-1 col-form-label">Cpf</label>
+      <div class="col-sm-2">
+        <input type="text" class="form-control" id="txtCpf" formControlName="cpf" placeholder="Digite seu cpf"
+          title="Digite seu cpf" [mask]="getCpfMask()" [(ngModel)]="agendamento.dadosPessoais!.cpf"
+          [ngClass]="{ 'is-invalid': submitted && f.cpf.errors }" [readonly]="true">
+        <div *ngIf="submitted && f.cpf.errors" class="invalid-feedback">
+          <div *ngIf="f.cpf.errors.required">Cpf é obrigatório</div>
+        </div>
+      </div>
+
+      <label for="txtData" class="col-sm-2 col-form-label">Data de Nascimento</label>
+      <div class="col-sm-2">
+        <input type="date" formControlName="dataNascimento" class="form-control" title="Digite a data de nascimento"
+          [(ngModel)]="agendamento.dadosPessoais!.dataNascimento"
+          [ngClass]="{ 'is-invalid': submitted && f.dataNascimento.errors }" />
+        <div *ngIf="submitted && f.dataNascimento.errors" class="invalid-feedback">
+          <div *ngIf="f.dataNascimento.errors.required">Data de Nascimento é obrigatório</div>
+          <div *ngIf="f.dataNascimento.errors.pattern">A data deve ser uma data válida no formato DD-MM-AAAA</div>
+        </div>
+      </div>
+
+      <label for="txtTelefone" class="col-sm-2 col-form-label">Telefone de Contato</label>
+      <div class="col-sm-2">
+        <input type="text" class="form-control" id="txtTelefone" formControlName="telefone"
+          placeholder="Digite seu telefone de contato" title="Digite seu telefone de contato"
+          [mask]="getTelefoneMask()" [(ngModel)]="agendamento.dadosPessoais!.telefone"
+          [ngClass]="{ 'is-invalid': submitted && f.telefone.errors }">
+        <div *ngIf="submitted && f.telefone.errors" class="invalid-feedback">
+          <div *ngIf="f.telefone.errors.required">Telefone de Contato é obrigatório</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label for="txtMae" class="col-sm-2 col-form-label">Nome da sua Mãe</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="txtMae" formControlName="mae"
+          placeholder="Digite o nome da sua mãe" title="Digite o nome da sua mãe" [(ngModel)]="agendamento.dadosPessoais!.mae"
+          [ngClass]="{ 'is-invalid': submitted && f.mae.errors }">
+        <div *ngIf="submitted && f.mae.errors" class="invalid-feedback">
+          <div *ngIf="f.mae.errors.required">Nome da sua Mãe é obrigatório</div>
+        </div>
+      </div>
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <legend class="w-auto">Endereço</legend>
+
+    <div class="form-group row mt-2">
+      <label for="txtRua" class="col-sm-1 col-form-label">Rua</label>
+      <div class="col-sm-11">
+        <input type="text" class="form-control" id="txtRua" formControlName="rua"
+          placeholder="Digite a rua do endereco" title="Digite a rua do endereco" [(ngModel)]="agendamento.endereco!.rua"
+          [ngClass]="{ 'is-invalid': submitted && f.rua.errors }">
+        <div *ngIf="submitted && f.rua.errors" class="invalid-feedback">
+          <div *ngIf="f.rua.errors.required">Rua é obrigatório</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group row mt-2">
+      <label for="txtNumero" class="col-sm-1 col-form-label">Numero</label>
+      <div class="col-sm-2">
+        <input type="text" class="form-control" id="txtNumero" formControlName="numero"
+          placeholder="Digite o numero do endereco" title="Digite o numero do endereco"
+          [(ngModel)]="agendamento.endereco!.numero">
+      </div>
+
+      <label for="txtBairro" class="col-sm-1 col-form-label">Bairro</label>
+      <div class="col-sm-8">
+        <input type="text" class="form-control" id="txtBairro" formControlName="bairro"
+          placeholder="Digite o bairro do endereco" title="Digite o bairro do endereco"
+          [(ngModel)]="agendamento.endereco!.bairro" [ngClass]="{ 'is-invalid': submitted && f.bairro.errors }">
+        <div *ngIf="submitted && f.bairro.errors" class="invalid-feedback">
+          <div *ngIf="f.bairro.errors.required">Bairro é obrigatório</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group row mt-2">
+      <label for="txtCep" class="col-sm-1 col-form-label">Cep</label>
+      <div class="col-sm-3">
+        <input type="text" class="form-control" id="txtCep" formControlName="cep"
+          placeholder="Digite o cep do endereco" title="Digite o cep do endereco" [mask]="getCepMask()"
+          [(ngModel)]="agendamento.endereco!.cep" [ngClass]="{ 'is-invalid': submitted && f.cep.errors }">
+        <div *ngIf="submitted && f.cep.errors" class="invalid-feedback">
+          <div *ngIf="f.cep.errors.required">Cep é obrigatório</div>
+        </div>
+      </div>
+
+      <label for="txtCidade" class="col-sm-1 col-form-label">Cidade</label>
+      <div class="col-sm-7">
+        <input type="text" class="form-control" id="txtCidade" formControlName="cidade"
+          placeholder="Digite o cidade do endereco" title="Digite o cidade do endereco"
+          [(ngModel)]="agendamento.endereco!.cidade" [ngClass]="{ 'is-invalid': submitted && f.cidade.errors }">
+        <div *ngIf="submitted && f.cidade.errors" class="invalid-feedback">
+          <div *ngIf="f.cidade.errors.required">Cidade é obrigatório</div>
+        </div>
+      </div>
+    </div>
+  </fieldset>
+
+  <button class="btn btn-sm btn-outline-secondary" (click)="cancelar()">Cancelar</button>&nbsp;
+  <button class="btn btn-sm btn-outline-primary">Confirmar Dados</button>
+</form>

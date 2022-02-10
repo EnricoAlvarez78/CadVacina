@@ -1,0 +1,10 @@
+<div *ngIf="currentSession?.token">
+  <app-header></app-header>
+</div>
+<div class="container pt-3">
+    <router-outlet></router-outlet>
+</div>
+<div *ngIf="currentSession?.token">
+  <app-footer></app-footer>
+</div>
+

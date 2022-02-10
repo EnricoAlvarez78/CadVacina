@@ -1,0 +1,62 @@
+<app-titulo-agendamento></app-titulo-agendamento>
+<div>
+  <form [formGroup]="registerForm" (ngSubmit)="salvarEndereco()">
+  <fieldset class="border p-2">
+    <legend class="w-auto">Endereço</legend>
+
+    <div class="form-group row mt-2">
+      <label for="txtRua" class="col-sm-1 col-form-label">Rua</label>
+      <div class="col-sm-11">
+        <input type="text" class="form-control" id="txtRua" formControlName="rua"
+          placeholder="Digite a rua do endereco" title="Digite a rua do endereco" [(ngModel)]="endereco.rua"
+          [ngClass]="{ 'is-invalid': submitted && f.rua.errors }">
+        <div *ngIf="submitted && f.rua.errors" class="invalid-feedback">
+          <div *ngIf="f.rua.errors.required">Rua é obrigatório</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group row mt-2">
+      <label for="txtNumero" class="col-sm-1 col-form-label">Numero</label>
+      <div class="col-sm-2">
+        <input type="text" class="form-control" id="txtNumero" formControlName="numero"
+          placeholder="Digite o numero do endereco" title="Digite o numero do endereco"
+          [(ngModel)]="endereco.numero">
+      </div>
+
+      <label for="txtBairro" class="col-sm-1 col-form-label">Bairro</label>
+      <div class="col-sm-8">
+        <input type="text" class="form-control" id="txtBairro" formControlName="bairro"
+          placeholder="Digite o bairro do endereco" title="Digite o bairro do endereco"
+          [(ngModel)]="endereco.bairro" [ngClass]="{ 'is-invalid': submitted && f.bairro.errors }">
+        <div *ngIf="submitted && f.bairro.errors" class="invalid-feedback">
+          <div *ngIf="f.bairro.errors.required">Bairro é obrigatório</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group row mt-2">
+      <label for="txtCep" class="col-sm-1 col-form-label">Cep</label>
+      <div class="col-sm-3">
+        <input type="text" class="form-control" id="txtCep" formControlName="cep"
+          placeholder="Digite o cep do endereco" title="Digite o cep do endereco" [mask]="getCepMask()"
+          [(ngModel)]="endereco.cep" [ngClass]="{ 'is-invalid': submitted && f.cep.errors }">
+        <div *ngIf="submitted && f.cep.errors" class="invalid-feedback">
+          <div *ngIf="f.cep.errors.required">Cep é obrigatório</div>
+        </div>
+      </div>
+
+      <label for="txtCidade" class="col-sm-1 col-form-label">Cidade</label>
+      <div class="col-sm-7">
+        <input type="text" class="form-control" id="txtCidade" formControlName="cidade"
+          placeholder="Digite o cidade do endereco" title="Digite o cidade do endereco"
+          [(ngModel)]="endereco.cidade" [ngClass]="{ 'is-invalid': submitted && f.cidade.errors }">
+        <div *ngIf="submitted && f.cidade.errors" class="invalid-feedback">
+          <div *ngIf="f.cidade.errors.required">Cidade é obrigatório</div>
+        </div>
+      </div>
+    </div>
+  </fieldset>
+  <app-botoes-agendamento></app-botoes-agendamento>
+</form>
+</div>

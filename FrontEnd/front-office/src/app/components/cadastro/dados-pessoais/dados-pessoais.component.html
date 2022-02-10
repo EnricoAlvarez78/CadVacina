@@ -1,0 +1,68 @@
+<app-titulo-agendamento></app-titulo-agendamento>
+<div>
+  <form [formGroup]="registerForm" (ngSubmit)="salvarDadosPessoais()">
+    <fieldset class="border p-2">
+      <legend class="w-auto">Dados Pessoais</legend>
+      <div class="form-group row">
+        <label for="txtNome" class="col-sm-1 col-form-label">Nome</label>
+        <div class="col-sm-11">
+          <input type="text" class="form-control" id="txtNome" formControlName="nome" placeholder="Digite seu nome"
+            title="Digite seu nome" [(ngModel)]="dadosPessoais.nome"
+            [ngClass]="{ 'is-invalid': submitted && f.nome.errors }">
+          <div *ngIf="submitted && f.nome.errors" class="invalid-feedback">
+            <div *ngIf="f.nome.errors.required">Nome é obrigatório</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="txtCpf" class="col-sm-1 col-form-label">Cpf</label>
+        <div class="col-sm-2">
+          <input type="text" class="form-control" id="txtCpf" formControlName="cpf" placeholder="Digite seu cpf"
+            title="Digite seu cpf" [mask]="getCpfMask()" [(ngModel)]="dadosPessoais.cpf"
+            [ngClass]="{ 'is-invalid': submitted && f.cpf.errors }">
+          <div *ngIf="submitted && f.cpf.errors" class="invalid-feedback">
+            <div *ngIf="f.cpf.errors.required">Cpf é obrigatório</div>
+          </div>
+        </div>
+
+        <label for="txtData" class="col-sm-2 col-form-label">Data de Nascimento</label>
+        <div class="col-sm-2">
+          <input type="date" formControlName="dataNascimento" class="form-control" title="Digite a data de nascimento"
+            [(ngModel)]="dadosPessoais.dataNascimento"
+            [ngClass]="{ 'is-invalid': submitted && f.dataNascimento.errors }" />
+          <div *ngIf="submitted && f.dataNascimento.errors" class="invalid-feedback">
+            <div *ngIf="f.dataNascimento.errors.required">Data de Nascimento é obrigatório</div>
+            <div *ngIf="f.dataNascimento.errors.pattern">A data deve ser uma data válida no formato DD-MM-AAAA</div>
+          </div>
+        </div>
+
+        <label for="txtTelefone" class="col-sm-2 col-form-label">Telefone de Contato</label>
+        <div class="col-sm-2">
+          <input type="text" class="form-control" id="txtTelefone" formControlName="telefone"
+            placeholder="Digite seu telefone de contato" title="Digite seu telefone de contato"
+            [mask]="getTelefoneMask()" [(ngModel)]="dadosPessoais.telefone"
+            [ngClass]="{ 'is-invalid': submitted && f.telefone.errors }">
+          <div *ngIf="submitted && f.telefone.errors" class="invalid-feedback">
+            <div *ngIf="f.telefone.errors.required">Telefone de Contato é obrigatório</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="txtMae" class="col-sm-2 col-form-label">Nome da sua Mãe</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="txtMae" formControlName="mae"
+            placeholder="Digite o nome da sua mãe" title="Digite o nome da sua mãe" [(ngModel)]="dadosPessoais.mae"
+            [ngClass]="{ 'is-invalid': submitted && f.mae.errors }">
+          <div *ngIf="submitted && f.mae.errors" class="invalid-feedback">
+            <div *ngIf="f.mae.errors.required">Nome da sua Mãe é obrigatório</div>
+          </div>
+        </div>
+      </div>
+
+    </fieldset>
+    <app-botoes-agendamento></app-botoes-agendamento>
+  </form>
+</div>
+

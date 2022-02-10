@@ -1,0 +1,20 @@
+<fieldset>
+  <legend>{{titulo}}</legend>
+  <form [formGroup]="registerForm" (ngSubmit)="consultar()">
+    <div class="row d-flex justify-content-center">
+      <label for="txtNome" class="col-form-label">Digite o Cpf do paciente</label>
+    </div>
+    <div class="row d-flex justify-content-center">
+      <input type="text" class="col-sm-2 form-control" id="txtCpf" formControlName="cpf" placeholder="___.___.___-__" title="Digite o Cpf do paciente"
+       [mask]="getCpfMask()"
+       [(ngModel)]="cpf"
+       [ngClass]="{ 'is-invalid': submitted && f.cpf.errors }">
+       <div *ngIf="submitted && f.cpf.errors" class="invalid-feedback d-flex justify-content-center">
+        <div *ngIf="f.cpf.errors.required">Cpf é obrigatório</div>
+       </div>
+    </div>
+    <div class="row d-flex justify-content-center pt-3">
+      <button class="btn btn-sm btn-outline-primary">Buscar</button>
+    </div>
+  </form>
+</fieldset>

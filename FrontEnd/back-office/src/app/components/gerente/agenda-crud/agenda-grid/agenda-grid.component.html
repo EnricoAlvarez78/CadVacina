@@ -1,0 +1,29 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Data</th>
+      <th scope="col">Manhã</th>
+      <th scope="col">Qtd Manhã</th>
+      <th scope="col">Tarde</th>
+      <th scope="col">Qtd Tarde</th>
+      <th scope="col">Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let agenda of agendas| paginate: { itemsPerPage: 10, currentPage: p }">
+      <td class="col-md-2">{{agenda.data | date:'dd/MM/yyyy' }}</td>
+      <td class="col-md-2"><input type="checkbox" [checked]="agenda.manha" (click)="$event.preventDefault();"></td>
+      <td class="col-md-2">{{agenda.quantidadeManha}}</td>
+      <td class="col-md-2"><input type="checkbox" [checked]="agenda.tarde" (click)="$event.preventDefault();"></td>
+      <td class="col-md-2">{{agenda.quantidadeTarde}}</td>
+      <td class="col-md-2">
+        <div class="btn-group">
+          <button class="btn btn-sm btn-outline-primary" (click)="navegarParaFrom(agenda.id)">Editar</button>
+          <button class="btn btn-sm btn-outline-danger" (click)="mostraConfirm(agenda.id, agenda.data)">Excluir</button>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<pagination-controls class="text-center" (pageChange)="p = $event" previousLabel="Anterior" nextLabel="Próximo"></pagination-controls>
