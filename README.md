@@ -6,14 +6,14 @@ Clonar o projeto
 
 Executar o script ../ScriptsBD/ScriptCadVacina.sql em um banco SQL SERVER
 
-Abrir o terminal na pasta ../BackEnd/AgendamentoVacina/Api
-Executar o comando: dotnet build
+Abrir o terminal na pasta ../BackEnd/AgendamentoVacina/Api<br />
+Executar o comando: dotnet build<br />
 Executar o comando: dotnet run
 
-Abrir o terminal na pasta ../FrontEnd/back-office
-Executar o comando: ng build
+Abrir o terminal na pasta ../FrontEnd/back-office<br />
+Executar o comando: ng build<br />
 Executar o comando: dotnet run
 
-Abrir o terminal na pasta ../FrontEnd/front-office
-Executar o comando: ng build
+Abrir o terminal na pasta ../FrontEnd/front-office<br />
+Executar o comando: ng build<br />
 Executar o comando: dotnet run
