@@ -9,6 +9,10 @@ namespace Core.Interfaces.Repositories
         Task<IList<Agendamento>> GetAll();
         Task<Agendamento> GetByCpf(string cpf);
         Task<int> Insert(Agendamento obj);
-        Task<bool> Update(Agendamento obj);      
+        Task<bool> Update(Agendamento obj);    
+        Task<List<Estatistica>> GetAgendamentosHoje();  
+        Task<List<Estatistica>> GetAgendamentosTurno();  
+        Task<List<Estatistica>>  GetAtendimentoPostos();
+        Task<List<Estatistica>>  GetGruposVacinados();
     }
 }

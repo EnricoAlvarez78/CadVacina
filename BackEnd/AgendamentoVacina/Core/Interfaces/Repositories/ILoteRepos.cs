@@ -11,5 +11,6 @@ namespace Core.Interfaces.Repositories
         Task<int> Insert(Lote obj);
         Task<bool> Update(Lote obj);
         Task<bool> Delete(int id);
+        Task<List<Estatistica>>  GetUtilizacaoLotes();
     }
 }

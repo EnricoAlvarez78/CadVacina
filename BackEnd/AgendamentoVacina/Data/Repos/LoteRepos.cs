@@ -19,13 +19,13 @@ namespace Data.Repos
         public async Task<IList<Lote>> GetAll()
         {
             IQueryable<Lote> query = _context.Lotes.Include("Posto");
-            return await query.AsNoTracking().ToListAsync();   
+            return await query.AsNoTracking().ToListAsync();
         }
 
         public async Task<Lote> GetById(int id)
         {
             IQueryable<Lote> query = _context.Lotes.Include("Posto").Where(x => x.Id.Equals(id));
-            return await query.AsNoTracking().FirstOrDefaultAsync();   
+            return await query.AsNoTracking().FirstOrDefaultAsync();
         }
 
         public async Task<int> Insert(Lote obj)
@@ -37,7 +37,7 @@ namespace Data.Repos
 
         public async Task<bool> Update(Lote obj)
         {
-            _context.Entry(obj).State = Microsoft.EntityFrameworkCore.EntityState.Modified ;
+            _context.Entry(obj).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
             return await _context.SaveChangesAsync() != 0;
         }
 
@@ -45,6 +45,31 @@ namespace Data.Repos
         {
             _context.Lotes.Remove(await GetById(id));
             return await _context.SaveChangesAsync() != 0;
+        }
+
+        public async Task<List<Estatistica>> GetUtilizacaoLotes()
+        {
+            IQueryable<Lote> query = _context.Lotes;
+
+            var ltList = await query.AsNoTracking().ToListAsync();
+
+            if (ltList != null && ltList.Any())
+            {
+                var result = new List<Estatistica>();
+
+                foreach (var lt in ltList)
+                {
+                    result.Add(new Estatistica()
+                    {
+                        Name = lt.Fabricante,
+                        Value = lt.DosesAplicadas
+                    });
+                }
+                
+                return result;
+            }
+
+            return null;
         }
     }
 }

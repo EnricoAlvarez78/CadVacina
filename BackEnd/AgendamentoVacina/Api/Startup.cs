@@ -86,12 +86,14 @@ namespace Api
             services.AddScoped<IPostoServ, PostoServ>();
             services.AddScoped<IUsuarioServ, UsuarioServ>();
             services.AddScoped<ITokenServ, TokenServ>();
+            services.AddScoped<IEstatisticaServ, EstatisticaServ>();
 
             services.AddSingleton(new MapperConfiguration(config =>
             {
                 config.CreateMap<Endereco, EnderecoModel>().ReverseMap();
                 config.CreateMap<Grupo, GrupoModel>().ReverseMap();
                 config.CreateMap<Perfil, PerfilModel>().ReverseMap();
+                config.CreateMap<Estatistica, EstatisticaModel>().ReverseMap();
 
                 config.CreateMap<Agenda, AgendaModel>()
                  .ForMember(dest => dest.Data, opts => opts.MapFrom(src => src.Data.ToString("yyyy-MM-dd")))

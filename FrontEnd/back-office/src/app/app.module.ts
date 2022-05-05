@@ -43,6 +43,7 @@ import { ChangePasswordComponent } from './views/shareds/change-password/change-
 import { EsqueciSenhaComponent } from './views/shareds/esqueci-senha/esqueci-senha.component';
 import { ErrorComponent } from './views/shareds/error/error.component';
 import { ForbiddenErrorComponent } from './views/shareds/forbidden-error/forbidden-error.component';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 const maskConfig: Partial<IConfig> = { validation: false,};
 
@@ -55,7 +56,8 @@ const maskConfig: Partial<IConfig> = { validation: false,};
         BrowserAnimationsModule,
         SimpleModalModule,
         NgxPaginationModule,
-        NgxMaskModule.forRoot(maskConfig)
+        NgxMaskModule.forRoot(maskConfig),
+        NgxChartsModule
     ],
     declarations: [
         AppComponent,
